@@ -18,10 +18,23 @@ class MarvelService {
     );
   };
 
-  getCharacter = (id) => {
-    return this.getResource(
+  getCharacter = async (id) => {
+    const res = await this.getResource(
       `${this._apiBase}characters/${id}?&${this._apiKey}`
     );
+  };
+
+  _transformCharacter = (res) => {
+    return {
+      name: res.data.results[0].name,
+      description: res.data.results[0].description,
+      thumbnail:
+        res.data.results[0].thumbnail.path +
+        "." +
+        res.data.results[0].thumbnail.extension,
+      homepage: res.data.results[0].urls[0].url,
+      wiki: res.data.results[0].urls[1].url,
+    };
   };
 }
 
