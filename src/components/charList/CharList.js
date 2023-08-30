@@ -9,6 +9,7 @@ class CharList extends Component {
     charList: [],
     loading: true,
     error: false,
+    newItemLoading: false,
   };
 
   marvelService = new MarvelService();
